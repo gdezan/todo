@@ -25,11 +25,6 @@ const DbProdConfig = {
   entities: ["./build/models/*.js"],
   synchronize: false,
   logging: false,
-  migrations: ["./build/migrations/*.js"],
-  migrationsTableName: "migrations",
-  cli: {
-    migrationsDir: "./build/migrations",
-  },
 };
 
 const OrmConfig =
