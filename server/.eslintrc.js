@@ -23,6 +23,7 @@ module.exports = {
       },
     ],
     'no-console': 'off',
+    'linebreak-style': 'off',
   },
   ignorePatterns: ['**/migrations/*.ts'],
   settings: {
