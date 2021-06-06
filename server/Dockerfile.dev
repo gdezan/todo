@@ -1,0 +1,13 @@
+FROM node:12
+
+WORKDIR /server
+
+COPY package.json yarn.lock ./
+
+RUN yarn install
+
+COPY . .
+
+EXPOSE 8080
+
+CMD [ "yarn", "dev" ]
