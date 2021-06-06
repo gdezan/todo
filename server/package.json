@@ -8,7 +8,7 @@
     "test": "echo \"Error: no server test specified\" && exit 1",
     "dev": "nodemon",
     "start": "node build/index.js",
-    "migration:generate": "typeorm migration:generate -c src/config/db.ts-d src/migrations"
+    "migration:generate": "typeorm migration:generate"
   },
   "author": "Gabriel Dezan",
   "license": "ISC",

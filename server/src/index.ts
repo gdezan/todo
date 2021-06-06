@@ -2,7 +2,6 @@ import express, { Application } from "express";
 import morgan from "morgan";
 import { createConnection } from "typeorm";
 
-// import DbConfig from "../ormconfig";
 import TodoRouter from "./routes/todo";
 
 async function main() {
@@ -21,7 +20,7 @@ async function main() {
     await createConnection();
     console.log("Connected succesfully to the database");
   } catch (error) {
-    console.error("Error while connecting to the database", error.message);
+    console.error("Error while connecting to the database:", error.message);
     process.exit(1);
   }
 
