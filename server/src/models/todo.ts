@@ -4,10 +4,10 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-} from "typeorm";
+} from 'typeorm';
 
 @Entity()
-export class ToDo {
+export default class ToDo {
   @PrimaryGeneratedColumn()
   id!: number;
 

@@ -1,5 +1,5 @@
-import { DeleteResult, getRepository } from "typeorm";
-import { ToDo } from "../models/todo";
+import { DeleteResult, getRepository } from 'typeorm';
+import ToDo from '../models/todo';
 
 interface TodoPayload {
   title?: string;
@@ -11,22 +11,22 @@ export default class TodoController {
   public static async createTodo(todo: TodoPayload): Promise<ToDo> {
     const todoRepository = getRepository(ToDo);
     const newTodo = todoRepository.create(todo);
-    return await todoRepository.save(newTodo);
+    return todoRepository.save(newTodo);
   }
 
   public static async getTodo(id: string): Promise<ToDo | undefined> {
     const todoRepository = getRepository(ToDo);
-    return await todoRepository.findOne(id);
+    return todoRepository.findOne(id);
   }
 
   public static async getTodos(): Promise<Array<ToDo>> {
     const todoRepository = getRepository(ToDo);
-    return await todoRepository.find();
+    return todoRepository.find();
   }
 
   public static async updateTodo(
     id: string,
-    changes: TodoPayload
+    changes: TodoPayload,
   ): Promise<ToDo | null> {
     const todoRepository = getRepository(ToDo);
     const todo = await todoRepository.findOne(id);
@@ -36,11 +36,11 @@ export default class TodoController {
     }
 
     todoRepository.merge(todo, changes);
-    return await todoRepository.save(todo);
+    return todoRepository.save(todo);
   }
 
   public static async deleteTodo(id: string): Promise<DeleteResult | null> {
     const todoRepository = getRepository(ToDo);
-    return await todoRepository.delete(id);
+    return todoRepository.delete(id);
   }
 }
