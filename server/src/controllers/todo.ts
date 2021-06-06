@@ -39,7 +39,7 @@ export default class TodoController {
     return await todoRepository.save(todo);
   }
 
-  public static async deleteTodo(id: string): Promise<DeleteResult> {
+  public static async deleteTodo(id: string): Promise<DeleteResult | null> {
     const todoRepository = getRepository(ToDo);
     return await todoRepository.delete(id);
   }

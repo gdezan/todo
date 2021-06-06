@@ -20,7 +20,7 @@ async function main() {
     await createConnection();
     console.log("Connected succesfully to the database");
   } catch (error) {
-    console.error("Error while connecting to the database:", error.message);
+    console.error("Error while connecting to the database", error.message);
     process.exit(1);
   }
 

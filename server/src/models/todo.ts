@@ -15,7 +15,7 @@ export class ToDo {
   title!: string;
 
   @Column({ nullable: true, default: null })
-  description!: string;
+  description!: string | null;
 
   @Column({ default: false })
   completed!: boolean;
