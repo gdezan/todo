@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import { createConnection } from 'typeorm';
+import cors from 'cors';
 
 import TodoRouter from './routes/todo';
 
@@ -9,6 +10,7 @@ async function main() {
 
   const app: Application = express();
 
+  app.use(cors());
   app.use(express.json());
   app.use(morgan('tiny'));
   app.use(express.static('public'));
@@ -20,7 +22,7 @@ async function main() {
     await createConnection();
     console.log('Connected succesfully to the database');
   } catch (error) {
-    console.error('Error while connecting to the database', error.message);
+    console.error('Error while connecting to the database:', error.message);
     process.exit(1);
   }
 

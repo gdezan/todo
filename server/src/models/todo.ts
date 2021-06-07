@@ -14,8 +14,8 @@ export default class ToDo {
   @Column({ length: 64 })
   title!: string;
 
-  @Column({ nullable: true, default: null })
-  description!: string | null;
+  @Column({ type: 'text', nullable: true, default: null })
+  description?: string | null;
 
   @Column({ default: false })
   completed!: boolean;
