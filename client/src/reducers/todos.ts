@@ -28,10 +28,7 @@ export const fetchTodos = createAsyncThunk<ToDoType[], void, { rejectValue: Todo
       );
     } catch (err) {
       const error: AxiosError<TodoError> = err;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data ?? { message: 'Unknown Error' });
     }
   }
 );
@@ -46,10 +43,7 @@ export const updateTodo = createAsyncThunk<
     return response.data;
   } catch (err) {
     const error: AxiosError<TodoError> = err;
-    if (!error.response) {
-      throw err;
-    }
-    return rejectWithValue(error.response.data);
+    return rejectWithValue(error.response?.data ?? { message: 'Unknown Error' });
   }
 });
 
@@ -61,10 +55,7 @@ export const createTodo = createAsyncThunk<ToDoType, Partial<ToDoType>, { reject
       return response.data;
     } catch (err) {
       const error: AxiosError<TodoError> = err;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data ?? { message: 'Unknown Error' });
     }
   }
 );
@@ -77,10 +68,7 @@ export const deleteTodo = createAsyncThunk<{ id: number }, number, { rejectValue
       return { id };
     } catch (err) {
       const error: AxiosError<TodoError> = err;
-      if (!error.response) {
-        throw err;
-      }
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data ?? { message: 'Unknown Error' });
     }
   }
 );
