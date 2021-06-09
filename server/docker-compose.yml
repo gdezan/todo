@@ -14,7 +14,7 @@ services:
     volumes:
       - ./src:/server/src
     ports:
-      - '5000:8080'
+      - '5050:8080'
     depends_on:
       - db
     environment:

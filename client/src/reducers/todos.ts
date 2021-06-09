@@ -18,11 +18,13 @@ const initialState: TodosState = {
   error: null,
 };
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const fetchTodos = createAsyncThunk<ToDoType[], void, { rejectValue: TodoError }>(
   'todos/fetch',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get('http://localhost:5000/todos');
+      const response = await axios.get(`${API_URL}/todos/`);
       return response.data.sort((a: ToDoType, b: ToDoType) =>
         a.createdAt.localeCompare(b.createdAt)
       );
@@ -39,7 +41,7 @@ export const updateTodo = createAsyncThunk<
   { rejectValue: TodoError }
 >('todos/update', async ({ id, ...changes }, { rejectWithValue }) => {
   try {
-    const response = await axios.put(`http://localhost:5000/todos/${id}`, changes);
+    const response = await axios.put(`${API_URL}/todos/${id}`, changes);
     return response.data;
   } catch (err) {
     const error: AxiosError<TodoError> = err;
@@ -51,7 +53,7 @@ export const createTodo = createAsyncThunk<ToDoType, Partial<ToDoType>, { reject
   'todos/create',
   async (newTodoData, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`http://localhost:5000/todos/`, newTodoData);
+      const response = await axios.post(`${API_URL}/todos/`, newTodoData);
       return response.data;
     } catch (err) {
       const error: AxiosError<TodoError> = err;
@@ -64,7 +66,7 @@ export const deleteTodo = createAsyncThunk<{ id: number }, number, { rejectValue
   'todos/delete',
   async (id, { rejectWithValue }) => {
     try {
-      await axios.delete(`http://localhost:5000/todos/${id}`);
+      await axios.delete(`${API_URL}/todos/${id}`);
       return { id };
     } catch (err) {
       const error: AxiosError<TodoError> = err;

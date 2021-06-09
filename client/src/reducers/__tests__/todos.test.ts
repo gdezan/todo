@@ -31,6 +31,8 @@ const mockStore = configureStore({
   },
 });
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 describe('todos reducer', () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -42,7 +44,7 @@ describe('todos reducer', () => {
 
       await mockStore.dispatch(fetchTodos());
 
-      expect(mockedAxios.get).toBeCalledWith('http://localhost:5000/todos');
+      expect(mockedAxios.get).toBeCalledWith(`${API_URL}/todos/`);
       expect(mockStore.getState().todos).toStrictEqual({
         loading: false,
         error: null,
@@ -55,7 +57,7 @@ describe('todos reducer', () => {
 
       await mockStore.dispatch(fetchTodos());
 
-      expect(mockedAxios.get).toBeCalledWith('http://localhost:5000/todos');
+      expect(mockedAxios.get).toBeCalledWith(`${API_URL}/todos/`);
       expect(mockStore.getState().todos).toMatchObject({
         loading: false,
         error: 'error',
@@ -69,7 +71,9 @@ describe('todos reducer', () => {
 
       await mockStore.dispatch(updateTodo({ id: 1, completed: true }));
 
-      expect(mockedAxios.put).toBeCalledWith('http://localhost:5000/todos/1', { completed: true });
+      expect(mockedAxios.put).toBeCalledWith(`${API_URL}/todos/1`, {
+        completed: true,
+      });
       expect(mockStore.getState().todos).toStrictEqual({
         loading: false,
         error: null,
@@ -97,7 +101,7 @@ describe('todos reducer', () => {
 
       await mockStore.dispatch(createTodo({ title: '3', completed: true }));
 
-      expect(mockedAxios.post).toBeCalledWith('http://localhost:5000/todos/', {
+      expect(mockedAxios.post).toBeCalledWith(`${API_URL}/todos/`, {
         title: '3',
         completed: true,
       });
@@ -130,7 +134,7 @@ describe('todos reducer', () => {
 
       await mockStore.dispatch(deleteTodo(3));
 
-      expect(mockedAxios.delete).toBeCalledWith('http://localhost:5000/todos/3');
+      expect(mockedAxios.delete).toBeCalledWith(`${API_URL}/todos/3`);
       expect(mockStore.getState().todos).toStrictEqual({
         loading: false,
         error: null,
